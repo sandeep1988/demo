@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProjectAsscociation</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body bg color ="cyan" >
+<%= link_to 'Home',root_path %><br>
+<% if user_signed_in? %>
+    <%= link_to 'Sign out', destroy_user_session_path ,:method => :delete %><br>
+            <% if current_user.admin?  %>
+             <%= link_to 'Create Product', new_product_path %><br>
+             <%= link_to 'Show all Product', products_path %><br>
+             <%= link_to 'Show all Users' , all_users_path %><br>
+             <% else %>
+               <%= link_to 'Show all Product',products_path %><br>
+             <% end %>
+    <% else %>
+        <%= link_to 'Register', new_user_registration_path %> <br>
+         <%= link_to 'Sign in', new_user_session_path %><br>
+    <% end %>	
+<%= yield %>
+</body>
+</html>

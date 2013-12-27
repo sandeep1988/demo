@@ -1,0 +1,21 @@
+<h1 align ="center">Listing Users</h1> 
+<table border ="1" align ="center">
+  <tr>
+    <th> Name </th>
+    <th> Price </th>
+    <th> Image </th>
+    <th> User First Name </th>
+    <th> User Last Name </th>
+  </tr>
+  <% @product_detail.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= image_tag product.avatar.url(:thumb) %></td>
+      <% @name_first=User.find(product.user_id) %>
+      <td><%=@name_first.first_name %></td>
+      <td><%=@name_first.last_name %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Back', products_path %><br>
