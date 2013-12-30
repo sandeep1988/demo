@@ -67,6 +67,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     libv8 (3.16.14.3)
+    link_url (0.0.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -143,6 +144,7 @@ DEPENDENCIES
   debugger
   devise
   jquery-rails
+  link_url (~> 0.0.1)
   paperclip
   pg
   rails (= 3.2.13)
