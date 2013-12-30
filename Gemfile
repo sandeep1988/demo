@@ -33,9 +33,8 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
 # Deploy with Capistrano
 # gem 'capistrano'
-
+gem "link_url", "~> 0.0.1"
 # To use debugger
  gem 'debugger'
