@@ -112,6 +112,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    shiva (0.0.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -149,6 +150,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rmagick (= 2.13.1)
   sass-rails (~> 3.2.3)
+  shiva
   therubyracer
   uglifier (>= 1.0.3)
   will_paginate (~> 3.0)
