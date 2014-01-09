@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  #require 'zip/zip'
   # GET /products
   # GET /products.json
+
   def index
     @products = Product.paginate(:page => params[:page], :per_page => 4)
     respond_to do |format|
@@ -23,7 +25,6 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }
@@ -37,33 +38,35 @@ class ProductsController < ApplicationController
 
   # POST /products
   # POST /products.json
-  def create
-    @product = current_user.products.create(params[:product])
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+  def create 
+     @product = current_user.products.create(params[:product])
+    if @product.save
+    if params[:product][:avatar].blank?
+      flash[:notice] = "Successfully created product."
+      redirect_to @product
+    else
+      render :action => "crop"
     end
+  else
+    render :action => 'new'
   end
+end
 
   # PUT /products/1
   # PUT /products/1.json
   def update
     @product = Product.find(params[:id])
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update_attributes(params[:product])
+    if params[:product][:avatar].blank?
+      flash[:notice] = "Successfully updated product."
+      redirect_to @product
+    else
+      render :action => "crop"
     end
+  else
+    render :action => 'edit'
   end
+end
 
   # DELETE /products/1
   # DELETE /products/1.json

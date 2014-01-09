@@ -1,12 +1,15 @@
 ProjectAsscociation::Application.routes.draw do
+  resources :locations do
+  get 'show_locations', to: 'locations#show_locations'
+  end
+  get "map/index"
   resources :products 
   get 'all_users', to: 'products#all_users'
   get 'product_detail', to: 'products#product_detail'
+  #get  'destroy_user' , to: 'products#destroy_user'
   devise_for :users 
   get 'destroy_user', to: 'products#destroy_user'
 #match 'products/:id/destroy_user' => 'products#destroy_user'
-
-
   # devise_for :users, :controllers => {:registrations => "registrations"} do
   # get "welcome" => "registrations#destroy", :method => :delete
   # end
@@ -17,6 +20,7 @@ ProjectAsscociation::Application.routes.draw do
       resources :account_histories
       end  
   get "welcome/index"
+  post "map/index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -74,4 +78,5 @@ ProjectAsscociation::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   root to: "welcome#index"
+  #root to: "map#index"
 end
